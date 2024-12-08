@@ -31,8 +31,10 @@
 
     <?php foreach ($barang as $brg) : ?>
 
-        <div class="card ml-3 mb-3" style="width: 16rem;">
-            <img src="<?php echo base_url().'/uploads/'.$brg->gambar ?>" class="card-img-top" alt="...">
+        <div class="card shadow-sm ml-3 mb-3" style="width: 16rem;">
+            <!-- Gambar Produk -->
+            <img src="<?php echo base_url().'/uploads/'.$brg->gambar ?>" class="p-3 rounded" style="object-fit: cover; width: 16rem; border-radius: 10px;" alt="<?php echo $brg->nama_brg ?>">
+            
             <div class="card-body">
                 <h5 class="card-title mb-1"><?php echo $brg->nama_brg ?></h5>
                 <small><?php echo $brg->keterangan ?></small>
@@ -42,7 +44,7 @@
                 <a href="#" class="btn btn-sm btn-success">Detail</a>
             </div>
         </div>
-
+    
     <?php endforeach; ?>
     </div>
 </div>

@@ -8,4 +8,23 @@ class Model_barang extends CI_Model {
     public function tambah_barang($data, $table) {
         $this->db->insert($table, $data);
     }
+
+    public function get_barang_by_id($id) {
+        $this->db->where('id_brg', $id);
+        return $this->db->get('tb_barang')->row();
+    }
+    
+    public function edit_barang($where, $table) {
+        return $this->db->get_where($table, $where);
+    }
+
+    public function update_data($where, $data, $table) {
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
+
+    public function hapus_data($where, $table) {
+        $this->db->where($where);
+        $this->db->delete($table);
+    }
 }
