@@ -35,36 +35,36 @@
             <!-- Nav Item - Elektronik -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-tv"></i>
-                    <span>Elektronik</span></a>
+                    <i class="fas fa-fw"></i>
+                    <span>Sepatu Pria</span></a>
             </li>
             
             <!-- Nav Item - Pakaian Pria -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-tshirt"></i>
-                    <span>Pakaian Pria</span></a>
+                    <i class="fas fa-fw"></i>
+                    <span>Sepatu Wanita</span></a>
             </li>
             
             <!-- Nav Item - Pakaian Wanita -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-tshirt"></i>
-                    <span>Pakaian Wanita</span></a>
+                    <i class="fas fa-fw"></i>
+                    <span>Sepatu Anak-anak</span></a>
             </li>
             
             <!-- Nav Item - Pakaian Anak-anak -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-tshirt"></i>
-                    <span>Pakaian Anak-anak</span></a>
+                    <i class="fas fa-fw"></i>
+                    <span>Sepatu Olahraga</span></a>
             </li>
             
             <!-- Nav Item - Peralatan Olahraga -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-futbol"></i>
-                    <span>Peralatan Olahraga</span></a>
+                    <i class="fas fa-fw"></i>
+                    <span>Sepatu Sneakers</span></a>
             </li>
 
             <!-- Divider -->
