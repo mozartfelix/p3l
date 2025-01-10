@@ -4,7 +4,7 @@
     </button>
 
     <table class="table table-bordered">
-        <tr>
+        <tr align="center">
             <th>NO</th>
             <th>NAMA BARANG</th>
             <th>KETERANGAN</th>
@@ -19,21 +19,21 @@
         foreach ($barang as $brg) : ?>
 
         <tr>
-            <td><?php echo $no++ ?></td>
+            <td align="center"><?php echo $no++ ?></td>
             <td><?php echo $brg->nama_brg ?></td>
             <td><?php echo $brg->keterangan ?></td>
             <td><?php echo $brg->kategori ?></td>
-            <td><?php echo $brg->harga ?></td>
-            <td><?php echo $brg->stok ?></td>
-            <td>
+            <td align="right">Rp. <?php echo number_format($brg->harga, 0,',','.') ?></td>
+            <td align="center"><?php echo $brg->stok ?></td>
+            <td align="center">
                 <div class="btn btn-success btn-sm">
                     <i class="fas fa-search-plus"></i>
                 </div>
             </td>
-            <td>
+            <td align="center">
                 <?php echo anchor('admin/Data_barang/edit/' .$brg->id_brg, '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>') ?>
             </td>
-            <td>
+            <td align="center">
                 <?php echo anchor('admin/Data_barang/hapus/' .$brg->id_brg, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?>
             </td>
         </tr>

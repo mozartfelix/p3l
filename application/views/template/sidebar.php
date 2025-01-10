@@ -7,7 +7,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url('Dashboard') ?>">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-store"></i>
                 </div>
@@ -19,7 +19,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="<?php echo base_url('Dashboard') ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -64,7 +64,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw"></i>
-                    <span>Sepatu Sneakers</span></a>
+                    <span>Sepatu Casual</span></a>
             </li>
 
             <!-- Divider -->
@@ -139,6 +139,18 @@
                                 </form>
                             </div>
                         </li>
+
+                        <div class="navbar">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <?php 
+                                    $keranjang = 'Keranjang Belanja: '.$this->cart->total_items(). ' items' 
+                                    ?>
+
+                                    <?php echo anchor('Dashboard/detail_keranjang', $keranjang) ?>
+                                </li>
+                            </ul>
+                        </div>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
