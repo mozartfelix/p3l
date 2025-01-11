@@ -33,7 +33,7 @@
             
             <!-- Nav Item - Invoices -->
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('admin/Invoices') ?>">
+                <a class="nav-link" href="<?php echo base_url('admin/Invoice') ?>">
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Invoices</span></a>
             </li>
