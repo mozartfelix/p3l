@@ -32,37 +32,37 @@
                 Kategori
             </div>
 
-            <!-- Nav Item - Elektronik -->
+            <!-- Nav Item - Sepatu Pria -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_pria') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Pria</span></a>
             </li>
             
-            <!-- Nav Item - Pakaian Pria -->
+            <!-- Nav Item - Pakaian Wanita -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_wanita') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Wanita</span></a>
             </li>
             
-            <!-- Nav Item - Pakaian Wanita -->
+            <!-- Nav Item - Pakaian Anak-anak -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_anak_anak') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Anak-anak</span></a>
             </li>
             
-            <!-- Nav Item - Pakaian Anak-anak -->
+            <!-- Nav Item - Pakaian Olahraga -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_olahraga') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Olahraga</span></a>
             </li>
             
-            <!-- Nav Item - Peralatan Olahraga -->
+            <!-- Nav Item - Peralatan Casual -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_casual') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Casual</span></a>
             </li>

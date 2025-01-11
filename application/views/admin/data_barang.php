@@ -26,9 +26,7 @@
             <td align="right">Rp. <?php echo number_format($brg->harga, 0,',','.') ?></td>
             <td align="center"><?php echo $brg->stok ?></td>
             <td align="center">
-                <div class="btn btn-success btn-sm">
-                    <i class="fas fa-search-plus"></i>
-                </div>
+                <?php echo anchor('admin/Data_barang/detail/'.$brg->id_brg, '<div class="btn btn-success btn-sm"><i class="fas fa-search-plus"></i></div>') ?>
             </td>
             <td align="center">
                 <?php echo anchor('admin/Data_barang/edit/' .$brg->id_brg, '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>') ?>
@@ -68,7 +66,13 @@
             
             <div class="form-group">
                 <label>Kategori</label>
-                <input type="text" name="kategori" class="form-control">
+                <select class="form-control" name="kategori">
+                    <option>Sepatu Pria</option>
+                    <option>Sepatu Wanita</option>
+                    <option>Sepatu Anak-anak</option>
+                    <option>Sepatu Olahraga</option>
+                    <option>Sepatu Casual</option>
+                </select>
             </div>
             
             <div class="form-group">

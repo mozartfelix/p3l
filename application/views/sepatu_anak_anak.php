@@ -29,7 +29,7 @@
 
     <div class="row text-center mt-4">
 
-    <?php foreach ($barang as $brg) : ?>
+    <?php foreach ($sepatu_anak_anak as $brg) : ?>
 
         <div class="card shadow-sm ml-3 mb-3" style="width: 16rem;">
             <!-- Gambar Produk -->
