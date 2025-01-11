@@ -38,7 +38,7 @@
                     </table>
 
                     <?php echo anchor('Dashboard/tambah_ke_keranjang/'.$brg->id_brg,'<div class="btn btn-sm btn-primary">Tambah ke Keranjang</div>') ?>
-                    <?php echo anchor('Dashboard/index/','<div class="btn btn-sm btn-danger">Kembali</div>') ?>
+                    <?php echo anchor('Welcome/index/','<div class="btn btn-sm btn-danger">Kembali</div>') ?>
                 </div>
             </div>
             <?php endforeach; ?>

@@ -33,7 +33,7 @@
 
     <div align="right">
         <a href="<?php echo base_url('Dashboard/hapus_keranjang') ?>"><div class="btn btn-sm btn-danger">Hapus Keranjang</div></a>
-        <a href="<?php echo base_url('Dashboard/index') ?>"><div class="btn btn-sm btn-primary">Lanjutkan Belanja</div></a>
+        <a href="<?php echo base_url('Welcome/index') ?>"><div class="btn btn-sm btn-primary">Lanjutkan Belanja</div></a>
         <a href="<?php echo base_url('Dashboard/pembayaran') ?>"><div class="btn btn-sm btn-success">Pembayaran</div></a>
     </div>
 </div>
