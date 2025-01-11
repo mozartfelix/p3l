@@ -5,12 +5,13 @@
             <div class="btn btn-sm btn-success">
                 <?php 
                 $grand_total = 0;
-                if ($keranjang = $this->cart->contents()) {
-                    foreach ($keranjang as $item) {
-                        $grand_total = $grand_total + $item['subtotal'];
+                $barang_checkout = $this->session->userdata('barang_checkout');
+                if ($barang_checkout) {
+                    foreach ($barang_checkout as $item) {
+                        $grand_total += $item['subtotal'];
                     }
 
-                echo "<h4>Total Belanja Anda: Rp. ".number_format($grand_total, 0,',','.');
+                    echo "<h4>Total Belanja Anda: Rp. " . number_format($grand_total, 0, ',', '.');
                 ?>
             </div><br><br>
 
@@ -20,48 +21,52 @@
                 
                 <div class="form-group">
                     <label>Nama Lengkap</label>
-                    <input type="text" name="nama" placeholder="Nama Lengkap Anda" class="form-control">
+                    <input type="text" name="nama" placeholder="Nama Lengkap Anda" class="form-control" value="<?php echo set_value('nama'); ?>">
+                    <?php echo form_error('nama', '<div class="text-danger small">', '</div>'); ?>
                 </div>
                 
                 <div class="form-group">
                     <label>Alamat Lengkap</label>
-                    <input type="text" name="alamat" placeholder="Alamat Lengkap Anda" class="form-control">
+                    <input type="text" name="alamat" placeholder="Alamat Lengkap Anda" class="form-control" value="<?php echo set_value('alamat'); ?>">
+                    <?php echo form_error('alamat', '<div class="text-danger small">', '</div>'); ?>
                 </div>
                 
                 <div class="form-group">
                     <label>No. Telepon</label>
-                    <input type="text" name="no_telp" placeholder="Nomor Telepon Anda" class="form-control">
+                    <input type="text" name="no_telp" placeholder="Nomor Telepon Anda" class="form-control" value="<?php echo set_value('no_telp'); ?>">
+                    <?php echo form_error('no_telp', '<div class="text-danger small">', '</div>'); ?>
                 </div>
                 
                 <div class="form-group">
                     <label>Jasa Pengiriman</label>
-                    <select class="form-control">
-                        <option>JNE</option>
-                        <option>TIKI</option>
-                        <option>POS Indonesia</option>
-                        <option>GOJEK</option>
-                        <option>GRAB</option>
+                    <select class="form-control" name="jasa_pengiriman">
+                        <option value="JNE">JNE</option>
+                        <option value="TIKI">TIKI</option>
+                        <option value="POS Indonesia">POS Indonesia</option>
+                        <option value="GOJEK">GOJEK</option>
+                        <option value="GRAB">GRAB</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label>Pilih Bank</label>
-                    <select class="form-control">
-                        <option>BCA - XXXXX</option>
-                        <option>BNI - XXXXX</option>
-                        <option>BRI - XXXXX</option>
-                        <option>Mandiri - XXXXX</option>
+                    <select class="form-control" name="bank">
+                        <option value="BCA">BCA - 1008027510</option>
+                        <option value="BNI">BNI - 5022143035</option>
+                        <option value="BRI">BRI - 312255007281390</option>
+                        <option value="Mandiri">Mandiri - 8020015379102</option>
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-sm btn-primary mb-3">Pesan</button>
+                <a href="<?php echo base_url('Dashboard/detail_keranjang'); ?>" class="btn btn-sm btn-danger">Kembali</a>
+                <button type="submit" class="btn btn-sm btn-success my-3">Checkout</button>
 
             </form>
 
             <?php 
-            } else {
-                echo "<h4>Keranjang Belanja Anda Masih Kosong";
-            }
+                } else {
+                    echo "<h4>Keranjang Belanja Anda Masih Kosong";
+                }
             ?>
         </div>
 

@@ -3,6 +3,11 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+        <?php
+        // Ambil segmen URL untuk menentukan menu aktif
+        $active_admin_menu = $this->uri->segment(2); // 'Dashboard_admin', 'Data_barang', atau 'Invoice'
+        ?>
+
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -18,21 +23,21 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item <?php echo $active_admin_menu == 'Dashboard_admin' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo base_url('admin/Dashboard_admin') ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
             <!-- Nav Item - Data Barang -->
-            <li class="nav-item">
+            <li class="nav-item <?php echo $active_admin_menu == 'Data_barang' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo base_url('admin/Data_barang') ?>">
                     <i class="fas fa-fw fa-database"></i>
                     <span>Data Barang</span></a>
             </li>
             
             <!-- Nav Item - Invoices -->
-            <li class="nav-item">
+            <li class="nav-item <?php echo $active_admin_menu == 'Invoice' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo base_url('admin/Invoice') ?>">
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Invoices</span></a>

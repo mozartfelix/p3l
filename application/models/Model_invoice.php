@@ -55,4 +55,49 @@ class Model_invoice extends CI_Model {
             return false;
         }
     }
+
+    public function hapus_invoice($id_invoice) {
+        // Hapus data invoice dari tabel invoice
+        $this->db->where('id', $id_invoice);
+        $hapus = $this->db->delete('tb_invoice');
+        
+        if ($hapus) {
+            // Hapus pesanan terkait
+            $this->db->where('id_invoice', $id_invoice);
+            $this->db->delete('tb_pesanan');
+        }
+        
+        return $hapus;
+    }
+
+    public function get_pendapatan_bulanan() {
+        // Mendapatkan bulan saat ini
+        $bulan_ini = date('m');
+        $tahun_ini = date('Y');
+
+        // Query untuk mendapatkan total pendapatan bulan ini
+        $this->db->select_sum('tb_pesanan.jumlah * tb_pesanan.harga', 'pendapatan');
+        $this->db->from('tb_pesanan');
+        $this->db->join('tb_invoice', 'tb_invoice.id = tb_pesanan.id_invoice');
+        $this->db->where('MONTH(tb_invoice.tgl_pesan)', $bulan_ini);
+        $this->db->where('YEAR(tb_invoice.tgl_pesan)', $tahun_ini);
+
+        $result = $this->db->get()->row();
+        return isset($result->pendapatan) ? $result->pendapatan : 0; // Gunakan isset() untuk memeriksa nilai
+    }
+
+    public function get_pendapatan_tahunan() {
+        // Mendapatkan tahun saat ini
+        $tahun_ini = date('Y');
+
+        // Query untuk mendapatkan total pendapatan tahun ini
+        $this->db->select_sum('tb_pesanan.jumlah * tb_pesanan.harga', 'pendapatan');
+        $this->db->from('tb_pesanan');
+        $this->db->join('tb_invoice', 'tb_invoice.id = tb_pesanan.id_invoice');
+        $this->db->where('YEAR(tb_invoice.tgl_pesan)', $tahun_ini);
+
+        $result = $this->db->get()->row();
+        return isset($result->pendapatan) ? $result->pendapatan : 0; // Gunakan isset() untuk memeriksa nilai
+    }
+
 }

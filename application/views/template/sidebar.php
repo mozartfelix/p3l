@@ -3,6 +3,11 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+        <?php
+        // Ambil segmen URL untuk menentukan menu aktif
+        $active_category = $this->uri->segment(2); // 'sepatu_pria', 'sepatu_wanita', dsb.
+        ?>
+
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -18,10 +23,18 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item <?php echo $active_category == '' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo base_url('Welcome') ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
+            </li>
+
+            <!-- Nav Item - Invoice Pembelian (Menu Baru) -->
+            <li class="nav-item <?php echo $active_category == 'invoice_pembelian' ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?php echo base_url('Dashboard/invoice_pembelian') ?>">
+                    <i class="fas fa-fw fa-file-invoice"></i>
+                    <span>Invoice Pembelian</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -33,35 +46,35 @@
             </div>
 
             <!-- Nav Item - Sepatu Pria -->
-            <li class="nav-item">
+            <li class="nav-item <?php echo $active_category == 'sepatu_pria' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_pria') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Pria</span></a>
             </li>
             
             <!-- Nav Item - Pakaian Wanita -->
-            <li class="nav-item">
+            <li class="nav-item <?php echo $active_category == 'sepatu_wanita' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_wanita') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Wanita</span></a>
             </li>
             
             <!-- Nav Item - Pakaian Anak-anak -->
-            <li class="nav-item">
+            <li class="nav-item <?php echo $active_category == 'sepatu_anak_anak' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_anak_anak') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Anak-anak</span></a>
             </li>
             
             <!-- Nav Item - Pakaian Olahraga -->
-            <li class="nav-item">
+            <li class="nav-item <?php echo $active_category == 'sepatu_olahraga' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_olahraga') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Olahraga</span></a>
             </li>
             
             <!-- Nav Item - Peralatan Casual -->
-            <li class="nav-item">
+            <li class="nav-item <?php echo $active_category == 'sepatu_casual' ? 'active' : ''; ?>">
                 <a class="nav-link" href="<?php echo base_url('Kategori/sepatu_casual') ?>">
                     <i class="fas fa-fw"></i>
                     <span>Sepatu Casual</span></a>

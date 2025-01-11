@@ -28,8 +28,8 @@
         <?php endforeach; ?>
 
         <tr>
-            <td colspan="4"></td>
-            <td align="right">Grand Total: Rp. <?php echo number_format($total, 0,',','.') ?></td>
+            <td colspan="4" align="right"><strong>Grand Total:</strong></td>
+            <td align="right">Rp. <?php echo number_format($total, 0,',','.') ?></td>
         </tr>
 
     </table>
