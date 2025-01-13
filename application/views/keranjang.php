@@ -10,7 +10,7 @@
         <table class="table table-bordered table-striped table-hover">
             <tr align="center">
                 <th>Pilih</th>
-                <th>NO</th>
+                <th>No</th>
                 <th>Nama Produk</th>
                 <th>Jumlah</th>
                 <th>Harga</th>

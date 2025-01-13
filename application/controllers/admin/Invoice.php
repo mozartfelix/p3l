@@ -28,6 +28,12 @@ class Invoice extends CI_Controller {
     public function detail($id_invoice) {
         $data['invoice'] = $this->model_invoice->ambil_id_invoice($id_invoice);
         $data['pesanan'] = $this->model_invoice->ambil_id_pesanan($id_invoice);
+        
+        // Periksa apakah $pesanan adalah array atau objek
+        if ($data['pesanan'] === false) {
+            $data['pesanan'] = []; // Jika tidak ada data pesanan, beri array kosong
+        }
+
         $this->load->view('template_admin/header');
         $this->load->view('template_admin/sidebar');
         $this->load->view('admin/detail_invoice', $data);

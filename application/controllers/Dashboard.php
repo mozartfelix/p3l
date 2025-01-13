@@ -80,6 +80,7 @@ class Dashboard extends CI_Controller {
                         // Tambahkan gambar ke item
                         $item['gambar'] = $barang->gambar;
                         $barang_checkout[] = $item;
+                        $this->cart->remove($item['rowid']);
                     }
                 }
 
@@ -176,7 +177,6 @@ class Dashboard extends CI_Controller {
             // Jika validasi berhasil, proses pesanan dan masukkan data invoice
             $is_processed = $this->model_invoice->index();
             if($is_processed){
-                $this->cart->destroy();
                 $data['barang_checkout'] = $barang_checkout; // Kirim data barang checkout ke view
                 $this->load->view('template/header');
                 $this->load->view('template/sidebar');

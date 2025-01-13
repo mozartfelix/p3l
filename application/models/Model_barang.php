@@ -45,4 +45,11 @@ class Model_barang extends CI_Model {
             return false;
         }
     }
+
+    public function search_barang($keyword) {
+        $this->db->like('nama_brg', $keyword);  // Menyaring nama barang yang mengandung kata kunci
+        $this->db->or_like('deskripsi_brg', $keyword); // Menyaring deskripsi barang yang mengandung kata kunci
+        $query = $this->db->get('barang');  // Asumsikan tabel barang
+        return $query->result();
+    }
 }

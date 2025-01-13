@@ -10,27 +10,33 @@
             <th>SUB-TOTAL</th>
         </tr>
 
-        <?php 
-        $total = 0;
-        foreach ($pesanan as $psn) :
-            $subtotal = $psn->jumlah * $psn->harga;
-            $total += $subtotal;
-        ?>
+        <?php if (!empty($pesanan)) : ?>
+            <?php 
+            $total = 0;
+            foreach ($pesanan as $psn) :
+                $subtotal = $psn->jumlah * $psn->harga;
+                $total += $subtotal;
+            ?>
 
-        <tr>
-            <td align="center"><?php echo $psn->id_brg ?></td>
-            <td><?php echo $psn->nama_brg ?></td>
-            <td align="center"><?php echo $psn->jumlah ?></td>
-            <td align="right">Rp. <?php echo number_format($psn->harga, 0,',','.') ?></td>
-            <td align="right">Rp. <?php echo number_format($subtotal, 0,',','.') ?></td>
-        </tr>
+            <tr>
+                <td align="center"><?php echo $psn->id_brg ?></td>
+                <td><?php echo $psn->nama_brg ?></td>
+                <td align="center"><?php echo $psn->jumlah ?></td>
+                <td align="right">Rp. <?php echo number_format($psn->harga, 0,',','.') ?></td>
+                <td align="right">Rp. <?php echo number_format($subtotal, 0,',','.') ?></td>
+            </tr>
 
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
-        <tr>
-            <td colspan="4" align="right"><strong>Grand Total:</strong></td>
-            <td align="right">Rp. <?php echo number_format($total, 0,',','.') ?></td>
-        </tr>
+            <tr>
+                <td colspan="4" align="right"><strong>Grand Total:</strong></td>
+                <td align="right">Rp. <?php echo number_format($total, 0,',','.') ?></td>
+            </tr>
+        <?php else : ?>
+            <tr>
+                <td colspan="5" align="center">Tidak ada pesanan untuk invoice ini.</td>
+            </tr>
+        <?php endif; ?>
 
     </table>
 
