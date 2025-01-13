@@ -30,8 +30,8 @@
             </li>
 
             <!-- Nav Item - Invoice Pembelian (Menu Baru) -->
-            <li class="nav-item <?php echo $active_category == 'invoice_pembelian' ? 'active' : ''; ?>">
-                <a class="nav-link" href="<?php echo base_url('Dashboard/invoice_pembelian') ?>">
+            <li class="nav-item <?php echo $active_category == 'daftar_invoice' ? 'active' : ''; ?>">
+                <a class="nav-link" href="<?php echo base_url('Dashboard/daftar_invoice') ?>">
                     <i class="fas fa-fw fa-file-invoice"></i>
                     <span>Invoice Pembelian</span>
                 </a>

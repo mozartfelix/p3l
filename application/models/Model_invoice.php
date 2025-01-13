@@ -56,6 +56,10 @@ class Model_invoice extends CI_Model {
         }
     }
 
+    public function get_invoice_by_id($id_invoice) {
+        return $this->db->get_where('tb_invoice', ['id' => $id_invoice])->row();
+    }
+
     public function hapus_invoice($id_invoice) {
         // Hapus data invoice dari tabel invoice
         $this->db->where('id', $id_invoice);

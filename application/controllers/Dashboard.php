@@ -110,19 +110,23 @@ class Dashboard extends CI_Controller {
     }
 
     // Fungsi untuk menampilkan invoice pembelian
-    public function invoice_pembelian() {
-        // Pastikan session atau data checkout tersedia
+    public function invoice_pembelian($id_invoice) {
         $barang_checkout = $this->session->userdata('barang_checkout');
+        $nama = $this->session->userdata('nama');
         
-        if (!$barang_checkout) {
-            // Redirect jika tidak ada data checkout
-            redirect('Dashboard/detail_keranjang');
+        // Pastikan `$pesan` selalu diinisialisasi
+        $data['pesan'] = null; // Nilai default
+        if (!$barang_checkout || !$nama) {
+            $data['pesan'] = "Transaksi pembelian Anda sedang diproses oleh penjual.";
+            $data['barang_checkout'] = [];
+        } else {
+            // Ambil detail invoice berdasarkan ID
+            $data['invoice'] = $this->model_invoice->get_invoice_by_id($id_invoice); // Pastikan ini menggunakan $id_invoice
+            $data['barang_checkout'] = $barang_checkout;
+            // Ambil detail pesanan terkait dengan invoice
+            $data['pesanan'] = $this->model_invoice->ambil_id_pesanan($id_invoice); // Tambahkan ini
         }
 
-        // Pass data ke view invoice
-        $data['barang_checkout'] = $barang_checkout;
-
-        // Load view invoice
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
         $this->load->view('proses_pesanan', $data);
@@ -198,6 +202,17 @@ class Dashboard extends CI_Controller {
             default:
                 return '';
         }
+    }
+
+    public function daftar_invoice() {
+        $data['invoice'] = $this->model_invoice->tampil_data();
+        if ($data['invoice'] === false) {
+            $data['invoice'] = []; // Jika tidak ada data, kirim array kosong
+        }
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('invoice', $data);
+        $this->load->view('template/footer');
     }
 
     public function selesai_pesanan() {

@@ -16,6 +16,9 @@ class Invoice extends CI_Controller {
 
     public function index() {
         $data['invoice'] = $this->model_invoice->tampil_data();
+        if ($data['invoice'] === false) {
+            $data['invoice'] = []; // Jika tidak ada data, kirim array kosong
+        }
         $this->load->view('template_admin/header');
         $this->load->view('template_admin/sidebar');
         $this->load->view('admin/invoice', $data);
