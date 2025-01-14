@@ -80,7 +80,6 @@ class Dashboard extends CI_Controller {
                         // Tambahkan gambar ke item
                         $item['gambar'] = $barang->gambar;
                         $barang_checkout[] = $item;
-                        $this->cart->remove($item['rowid']);
                     }
                 }
 
@@ -110,35 +109,9 @@ class Dashboard extends CI_Controller {
         $this->load->view('template/footer');
     }
 
-    // Fungsi untuk menampilkan invoice pembelian
-    public function invoice_pembelian($id_invoice) {
-        $barang_checkout = $this->session->userdata('barang_checkout');
-        $nama = $this->session->userdata('nama');
-        
-        // Pastikan `$pesan` selalu diinisialisasi
-        $data['pesan'] = null; // Nilai default
-        if (!$barang_checkout || !$nama) {
-            $data['pesan'] = "Transaksi pembelian Anda sedang diproses oleh penjual.";
-            $data['barang_checkout'] = [];
-        } else {
-            // Ambil detail invoice berdasarkan ID
-            $data['invoice'] = $this->model_invoice->get_invoice_by_id($id_invoice); // Pastikan ini menggunakan $id_invoice
-            $data['barang_checkout'] = $barang_checkout;
-            // Ambil detail pesanan terkait dengan invoice
-            $data['pesanan'] = $this->model_invoice->ambil_id_pesanan($id_invoice); // Tambahkan ini
-        }
-
-        $this->load->view('template/header');
-        $this->load->view('template/sidebar');
-        $this->load->view('proses_pesanan', $data);
-        $this->load->view('template/footer');
-    }
-
     public function proses_pesanan() {
-        // Load library form validation
         $this->load->library('form_validation');
 
-        // Aturan validasi untuk setiap input
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required', [
             'required' => 'Nama Lengkap wajib diisi!'
         ]);
@@ -149,41 +122,35 @@ class Dashboard extends CI_Controller {
             'required' => 'Nomor Telepon wajib diisi!',
             'numeric'  => 'Nomor Telepon hanya boleh berisi angka!'
         ]);
+        $this->form_validation->set_rules('bank', 'Bank', 'required', [
+            'required' => 'Bank wajib dipilih!'
+        ]);
 
-        // Jika validasi gagal
         if ($this->form_validation->run() == FALSE) {
-            // Tampilkan kembali halaman pembayaran dengan pesan error
-            $this->load->view('template/header');
-            $this->load->view('template/sidebar');
-            $this->load->view('pembayaran');
-            $this->load->view('template/footer');
+            $this->pembayaran(); // Kembali ke halaman pembayaran jika ada error
         } else {
-            // Simpan data ke session untuk digunakan pada invoice
-            $this->session->set_userdata([
-                'nama'            => $this->input->post('nama'),
-                'alamat'          => $this->input->post('alamat'),
-                'no_telp'         => $this->input->post('no_telp'),
-                'jasa_pengiriman' => $this->input->post('jasa_pengiriman'),
-                'bank'            => $this->input->post('bank'),
-                'nomor_rekening'  => $this->get_rekening_by_bank($this->input->post('bank'))
-            ]);
-
-            // Ambil barang yang telah di-checkout dari session
             $barang_checkout = $this->session->userdata('barang_checkout');
             if (!$barang_checkout) {
                 redirect('Dashboard/detail_keranjang');
             }
 
-            // Jika validasi berhasil, proses pesanan dan masukkan data invoice
-            $is_processed = $this->model_invoice->index();
-            if($is_processed){
-                $data['barang_checkout'] = $barang_checkout; // Kirim data barang checkout ke view
-                $this->load->view('template/header');
-                $this->load->view('template/sidebar');
-                $this->load->view('proses_pesanan', $data);
-                $this->load->view('template/footer');
+            $this->load->model('model_invoice');
+            $id_invoice = $this->model_invoice->index();
+            if ($id_invoice) {
+                // Simpan barang ke tb_pesanan
+                $this->model_invoice->simpan_pesanan($id_invoice, $barang_checkout);
+
+                // Hapus barang yang sudah di-checkout dari keranjang
+                foreach ($barang_checkout as $item) {
+                    $this->cart->remove($item['rowid']);
+                }
+
+                // Tampilkan pesan sukses
+                $this->session->set_flashdata('pesan', 'Pesanan berhasil diproses!');
+                redirect('Dashboard/invoice_pembelian/' . $id_invoice);
             } else {
-                echo "Maaf, Pesanan Anda Gagal diproses!";
+                $this->session->set_flashdata('pesan', 'Pesanan gagal diproses!');
+                redirect('Dashboard/pembayaran');
             }
         }
     }
@@ -202,6 +169,18 @@ class Dashboard extends CI_Controller {
             default:
                 return '';
         }
+    }
+
+    // Fungsi untuk menampilkan invoice pembelian
+    public function invoice_pembelian($id_invoice) {
+        $barang_checkout = $this->session->userdata('barang_checkout');
+        $data['invoice'] = $this->model_invoice->get_invoice_by_id($id_invoice);
+        $data['pesanan'] = $this->model_invoice->ambil_id_pesanan($id_invoice);
+        
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('proses_pesanan', $data);
+        $this->load->view('template/footer');
     }
 
     public function daftar_invoice() {
@@ -242,6 +221,16 @@ class Dashboard extends CI_Controller {
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
         $this->load->view('detail_barang', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function search() {
+        $keyword = $this->input->post('keyword');
+        $data['results'] = $this->model_barang->search_data($keyword); // Asumsikan model_barang memiliki fungsi ini
+        
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('search_results', $data);
         $this->load->view('template/footer');
     }
 

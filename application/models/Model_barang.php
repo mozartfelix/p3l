@@ -52,4 +52,11 @@ class Model_barang extends CI_Model {
         $query = $this->db->get('barang');  // Asumsikan tabel barang
         return $query->result();
     }
+
+    public function search_data($keyword) {
+        $this->db->like('nama_brg', $keyword);
+        $this->db->or_like('keterangan', $keyword);
+        $this->db->or_like('kategori', $keyword);
+        return $this->db->get('tb_barang')->result(); // Asumsikan data barang ada di tabel `tb_barang`
+    }
 }

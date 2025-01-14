@@ -51,10 +51,10 @@
                 <div class="form-group">
                     <label>Pilih Bank</label>
                     <select class="form-control" name="bank">
-                        <option value="BCA">BCA - 1008027510</option>
-                        <option value="BNI">BNI - 5022143035</option>
-                        <option value="BRI">BRI - 312255007281390</option>
-                        <option value="Mandiri">Mandiri - 8020015379102</option>
+                        <option value="BCA - 1008027510">BCA - 1008027510</option>
+                        <option value="BNI - 5022143035">BNI - 5022143035</option>
+                        <option value="BRI - 312255007281390">BRI - 312255007281390</option>
+                        <option value="Mandiri - 8020015379102">Mandiri - 8020015379102</option>
                     </select>
                 </div>
 

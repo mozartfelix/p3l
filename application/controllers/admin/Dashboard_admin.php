@@ -20,4 +20,14 @@ class Dashboard_admin extends CI_Controller {
         $this->load->view('admin/dashboard');
         $this->load->view('template_admin/footer');
     }
+
+    public function search() {
+        $keyword = $this->input->post('keyword');
+        $data['results'] = $this->model_barang->search_data($keyword); // Asumsikan model_barang memiliki fungsi ini
+        
+        $this->load->view('template_admin/header');
+        $this->load->view('template_admin/sidebar');
+        $this->load->view('admin/search_results', $data);
+        $this->load->view('template_admin/footer');
+    }
 }
